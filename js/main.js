@@ -445,9 +445,9 @@ function renderHome() {
         <div class="yc-title">${yr.title}</div>
         <div class="yc-sub">${yr.subtitle}</div>
         <div class="yc-badges">
-          <span class="yc-badge">📚 ${total}</span>
-          <span class="yc-badge">🕉️ संस्कृत</span>
-          <span class="yc-badge">⭐ ज्योतिष</span>
+          <span class="yc-badge">🗞️ ${total}</span>
+          <span class="yc-badge">📖 व्याकरण</span>
+          <span class="yc-badge">📒 ज्योतिष</span>
         </div>
       </div>
       <div class="yc-arrow">›</div>
