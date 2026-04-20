@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="description" content="शास्त्री कक्षा पोर्टल v3">
+  <title>शास्त्री कक्षा</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- PWA meta tags -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="शास्त्री">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+
+  <!-- ★ Apply theme + font BEFORE rendering (prevent FOUC) -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('sp_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.style.colorScheme = (t === 'dark' || t === 'amoled') ? 'dark' : 'light';
+
+      var fontMap = {
+        'noto-serif':  "'Noto Serif Devanagari', serif",
+        'eczar':       "'Eczar', serif",
+        'khand':       "'Khand', sans-serif",
+        'gotu':        "'Gotu', sans-serif",
+        'comic-sans':  "'Comic Sans MS', cursive",
+        'chakra':      "'Chakra Petch', sans-serif",
+      };
+      var f = localStorage.getItem('sp_font') || 'noto-serif';
+      document.documentElement.setAttribute('data-font', f);
+      var fc = fontMap[f] || fontMap['noto-serif'];
+      document.documentElement.style.setProperty('--font', fc);
+      if (['noto-serif','eczar','khand','gotu'].indexOf(f) > -1) {
+        document.documentElement.style.setProperty('--font-s', fc);
+      }
+
+      var sz = parseInt(localStorage.getItem('sp_fontsize') || '16');
+      document.documentElement.style.fontSize = sz + 'px';
+    })();
+  </script>
+</head>
+<body>
+
+<!-- Animated Canvas Background -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- ══ HEADER ══ -->
+<header class="site-header">
+  <div class="header-left">
+    <div class="logo-pill">
+      <div class="logo-ico">📚</div>
+      <span class="logo-text">शास्त्री</span>
+    </div>
+  </div>
+  <div class="header-right">
+
+    <!-- 3-DOTS MENU -->
+    <div class="dots-menu-wrap">
+      <button class="hdr-btn" id="dotsBtn" title="थप विकल्प">⋮</button>
+      <div class="dots-menu" id="dotsMenu">
+
+        <!-- Theme section -->
+        <div class="dm-section">
+          <div class="dm-label">🎨 Theme छान्नुस्</div>
+          <div class="theme-dots" id="themeDots"></div>
+        </div>
+
+        <!-- Dark mode toggle -->
+        <div class="dm-section" style="padding-top:6px;border-top:1px solid var(--divider)">
+          <div class="dm-item">
+            <div class="dm-item-ico">🌙</div>
+            <div>
+              <div class="dm-item-name">रात्रि मोड</div>
+              <div class="dm-item-sub">Midnight Dark theme</div>
+            </div>
+            <div class="dm-tog" id="darkMenuTog"><div class="dm-tog-k"></div></div>
+          </div>
+        </div>
+
+        <!-- Font selector -->
+        <div class="dm-section" style="border-top:1px solid var(--divider);padding-top:8px">
+          <div class="dm-label">🔤 Font छान्नुस्</div>
+          <div style="display:flex;flex-direction:column;gap:3px" id="fontList">
+            <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-3);padding:4px 2px 2px">🕉️ नेपाली / संस्कृत</div>
+            <div class="font-opt" data-font="noto-serif" onclick="applyFont('noto-serif')">
+              <span class="fo-name" style="font-family:'Noto Serif Devanagari',serif">Noto Serif — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="noto-sans" onclick="applyFont('noto-sans')">
+              <span class="fo-name" style="font-family:'Noto Sans Devanagari',sans-serif">Noto Sans — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="eczar" onclick="applyFont('eczar')">
+              <span class="fo-name" style="font-family:'Eczar','Noto Serif Devanagari',serif">Eczar — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="khand" onclick="applyFont('khand')">
+              <span class="fo-name" style="font-family:'Khand','Noto Sans Devanagari',sans-serif">Khand — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="gotu" onclick="applyFont('gotu')">
+              <span class="fo-name" style="font-family:'Gotu','Noto Sans Devanagari',sans-serif">Gotu — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="yatra" onclick="applyFont('yatra')">
+              <span class="fo-name" style="font-family:'Yatra One','Noto Serif Devanagari',cursive">Yatra — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="baloo" onclick="applyFont('baloo')">
+              <span class="fo-name" style="font-family:'Baloo 2','Noto Sans Devanagari',sans-serif">Baloo 2 — नमस्ते</span>
+            </div>
+            <div class="font-opt" data-font="siddhanta" onclick="applyFont('siddhanta')">
+              <span class="fo-name" style="font-family:'Noto Serif Devanagari',serif">Siddhanta — संस्कृत</span>
+            </div>
+            <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-3);padding:6px 2px 2px;border-top:1px solid var(--divider);margin-top:3px">🔤 English</div>
+            <div class="font-opt" data-font="comic-sans" onclick="applyFont('comic-sans')">
+              <span class="fo-name" style="font-family:'Comic Sans MS',cursive">Comic Sans</span>
+            </div>
+            <div class="font-opt" data-font="chakra" onclick="applyFont('chakra')">
+              <span class="fo-name" style="font-family:'Chakra Petch',sans-serif">Chakra Petch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Animation -->
+        <div class="dm-section" style="border-top:1px solid var(--divider);padding-top:8px">
+          <div class="dm-label">📰 News Animation</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px" id="animList">
+            <div class="anim-opt" data-anim="slide"  onclick="setNewsAnim('slide')">↔ Slide</div>
+            <div class="anim-opt" data-anim="fade"   onclick="setNewsAnim('fade')">✨ Fade</div>
+            <div class="anim-opt" data-anim="zoom"   onclick="setNewsAnim('zoom')">🔍 Zoom</div>
+            <div class="anim-opt" data-anim="flip"   onclick="setNewsAnim('flip')">🔄 Flip</div>
+          </div>
+        </div>
+
+        <!-- Font size -->
+        <div class="dm-slider-row">
+          <div class="dm-slider-head">
+            <span class="dm-slider-lbl">🔤 अक्षर आकार</span>
+            <span class="dm-slider-val" id="fontSizeLbl">16px</span>
+          </div>
+          <input type="range" class="dm-slider" id="fontSizeSlider" min="14" max="20" value="16">
+        </div>
+
+        <!-- Other actions -->
+        <div class="dm-section" style="padding-top:4px;border-top:1px solid var(--divider)">
+          <div class="dm-item" id="shareBtn">
+            <div class="dm-item-ico">🔗</div>
+            <div><div class="dm-item-name">Website Share गर्नुस्</div></div>
+          </div>
+          <div class="dm-item" onclick="go('notes');document.getElementById('dotsMenu').classList.remove('open')">
+            <div class="dm-item-ico">📝</div>
+            <div><div class="dm-item-name">मेरा नोटहरू</div></div>
+          </div>
+          <div class="dm-item" onclick="go('profile');document.getElementById('dotsMenu').classList.remove('open')">
+            <div class="dm-item-ico">⚙️</div>
+            <div><div class="dm-item-name">सेटिङ र Profile</div></div>
+          </div>
+          <div class="dm-item" onclick="exportData();document.getElementById('dotsMenu').classList.remove('open')">
+            <div class="dm-item-ico">💾</div>
+            <div><div class="dm-item-name">Backup Export</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ DATETIME ══ -->
+<div class="datetime-bar">
+  <div class="dt-pill">
+    <span class="dt-time" id="dtTime">--:--:--</span>
+    <span class="dt-sep">|</span>
+    <span class="dt-date" id="dtDate">…</span>
+    <span class="dt-sep">|</span>
+    <span class="dt-bs"   id="dtBS">…</span>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-bar">
+  <div class="ticker-badge">📢 समाचार</div>
+  <div class="ticker-inner-wrap">
+    <div class="ticker-inner" id="tickerInner">
+      <span class="t-item">शास्त्री पोर्टलमा स्वागत छ!</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ PAGES ════════════════ -->
+
+<!-- HOME -->
+<div id="p-home" class="page on">
+  <div class="search-wrap">
+    <div class="search-glass">
+      <span class="s-ico">🔍</span>
+      <input id="sInp" type="search" placeholder="किताब वा विषय खोज्नुस्…" autocomplete="off">
+      <button class="s-clr" id="sClr">✕</button>
+      <div class="s-drop" id="sDrop"></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="sec-head s1"><div class="sec-title">वर्षहरू</div></div>
+    <div class="years-stack" id="yearsGrid">
+      <div class="spin-wrap"><div class="spinner"></div></div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="sec-head s3"><div class="sec-title">ताजा समाचार</div></div>
+    </div>
+  </div><!-- close .content for full-bleed news -->
+
+  <!-- Full-bleed news panel (no side padding clipping) -->
+  <div id="newsOverflow" class="news-overflow" style="width:100%;overflow:hidden">
+    <div class="news-track" id="newsTrack" style="display:flex">
+      <div class="spin-wrap"><div class="spinner"></div></div>
+    </div>
+  </div>
+  <div class="news-dots" id="newsDots" style="margin-top:10px"></div>
+
+  <div class="content"><!-- reopen .content -->
+    
+    <div style="height:12px"></div>
+  </div>
+</div>
+
+<!-- YEAR -->
+<div id="p-year" class="page"></div>
+
+<!-- SUBJECT -->
+<div id="p-subject" class="page"></div>
+
+<!-- COURSES -->
+<div id="p-courses" class="page">
+  <div class="content">
+    <div class="sec-head"><div class="sec-title">सबै विषयहरू</div></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px">
+      <div class="cf-chip nd" data-key="all"     style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('all')">सबै</div>
+      <div class="cf-chip nd" data-key="nepali"   style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('nepali')">📜 नेपाली</div>
+      <div class="cf-chip nd" data-key="english"  style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('english')">📗 English</div>
+      <div class="cf-chip nd" data-key="sanskrit" style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('sanskrit')">🕉️ संस्कृत</div>
+      <div class="cf-chip nd" data-key="vyakaran" style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('vyakaran')">✏️ व्याकरण</div>
+      <div class="cf-chip nd" data-key="jyotish"  style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('jyotish')">⭐ ज्योतिष</div>
+    </div>
+    <div id="coursesList"><div class="spin-wrap"><div class="spinner"></div></div></div>
+  </div>
+</div>
+
+<!-- NOTES -->
+<div id="p-notes" class="page">
+  <div class="content">
+    <div class="sec-head"><div class="sec-title">मेरा नोटहरू</div></div>
+    <div id="notesList"></div>
+  </div>
+  <button class="fab" id="notesFab">＋</button>
+</div>
+
+<!-- PROFILE -->
+<div id="p-profile" class="page">
+  <div class="content">
+
+    <!-- ── Profile Hero ── -->
+    <div class="prof-hero s1" id="profHero">
+      <!-- Avatar: photo वा emoji -->
+      <div class="p-av" id="profAvWrap" onclick="triggerAvatarPick()">
+        <img id="profAvImg" src="" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:none">
+        <span id="profAvEmoji">👨‍🎓</span>
+        <div class="p-av-edit">✏️</div>
+      </div>
+      <div class="p-name" id="profNameDisp">विद्यार्थी</div>
+      <div class="p-role" id="profRoleDisp">शास्त्री कक्षा पोर्टल</div>
+      <button class="prof-edit-btn" onclick="openProfileEdit()">✏️ सम्पादन</button>
+      <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
+    </div>
+
+    <!-- ── Social Links ── -->
+    <div id="socialLinks" style="display:none;margin-bottom:14px">
+      <div class="sett-group">
+        <div class="sett-grp-lbl">सम्पर्क / Social</div>
+        <div id="socialLinksBody"></div>
+      </div>
+    </div>
+
+    <div class="sec-head s2"><div class="sec-title">तथ्याङ्क</div></div>
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="sec-head s3"><div class="sec-title">सेटिङहरू</div></div>
+
+    <div class="sett-group s3">
+      <div class="sett-grp-lbl">प्रदर्शन</div>
+      <div class="sett-row" onclick="applyTheme(App&&App.theme==='dark'?'light':'dark')">
+        <div class="sett-left">
+          <div class="sett-ico" style="background:#1a1a2e;color:#ffd700">🌙</div>
+          <div><div class="sett-name">रात्रि मोड</div><div class="sett-desc">Midnight Dark theme</div></div>
+        </div>
+        <div class="tog" id="profileDarkTog"><div class="tog-k"></div></div>
+      </div>
+      <div class="sett-row">
+        <div class="sett-left">
+          <div class="sett-ico" style="background:#e8f5e9">🔤</div>
+          <div><div class="sett-name">अक्षर आकार</div><div class="sett-desc" id="profFontLbl">16px</div></div>
+        </div>
+        <input type="range" id="profFontSlider" min="14" max="20" value="16" style="width:90px;accent-color:var(--accent)">
+      </div>
+    </div>
+
+    <div class="sett-group s4">
+      <div class="sett-grp-lbl">Data</div>
+      <div class="sett-row" onclick="exportData()">
+        <div class="sett-left">
+          <div class="sett-ico" style="background:#e3f2fd">📤</div>
+          <div><div class="sett-name">Backup Export</div><div class="sett-desc">JSON download</div></div>
+        </div><span style="color:var(--text-3)">→</span>
+      </div>
+      <div class="sett-row" onclick="document.getElementById('impInp').click()">
+        <div class="sett-left">
+          <div class="sett-ico" style="background:#f3e5f5">📥</div>
+          <div><div class="sett-name">Backup Import</div><div class="sett-desc">JSON restore</div></div>
+        </div><span style="color:var(--text-3)">→</span>
+        <input type="file" id="impInp" accept=".json" style="display:none" onchange="importData(event)">
+      </div>
+    </div>
+
+    <div class="sec-head" style="margin-top:6px"><div class="sec-title">पढ्ने इतिहास</div>
+      <button onclick="App.history=[];localStorage.setItem('sp_history','[]');renderHistory()" style="font-size:0.72rem;color:var(--text-3);background:none;border:none;cursor:pointer;font-family:var(--font)">सफा</button>
+    </div>
+    <div id="histList"></div>
+
+    <!-- ── Copyright ── -->
+    <div class="copyright-block">
+      <div class="copy-logo">📚</div>
+      <div class="copy-title">शास्त्री पोर्टल</div>
+      <div class="copy-year" id="copyYear">© 2025</div>
+      <div class="copy-made">Made with ❤️ for शास्त्री विद्यार्थीहरू</div>
+      <div id="copyCredit" style="display:none" class="copy-credit"></div>
+    </div>
+
+    <div style="height:14px"></div>
+  </div>
+</div>
+
+<!-- ══ BOTTOM NAV ══ -->
+<nav class="bot-nav">
+  <a class="nav-item on" data-page="home" href="#">
+    <div class="nav-pip"></div>
+    <div class="nav-ico"><img src="images/icons/home.svg" width="26" height="26" alt="home" class="nav-svg"></div>
+    <div class="nav-lbl">होम</div>
+  </a>
+  <a class="nav-item" data-page="courses" href="#">
+    <div class="nav-pip"></div>
+    <div class="nav-ico"><img src="images/icons/courses.svg" width="26" height="26" alt="courses" class="nav-svg"></div>
+    <div class="nav-lbl">विषयहरू</div>
+  </a>
+  <a class="nav-item" data-page="notes" href="#">
+    <div class="nav-pip"></div>
+    <div class="nav-ico"><img src="images/icons/notes.svg" width="26" height="26" alt="notes" class="nav-svg"></div>
+    <div class="nav-lbl">नोट</div>
+  </a>
+  <a class="nav-item" data-page="profile" href="#">
+    <div class="nav-pip"></div>
+    <div class="nav-ico"><img src="images/icons/settings.svg" width="26" height="26" alt="settings" class="nav-svg"></div>
+    <div class="nav-lbl">सेटिङ</div>
+  </a>
+</nav>
+
+<!-- ══ MODALS ══ -->
+<div class="overlay" id="newsModal" onclick="if(event.target===this)closeOv('newsModal')">
+  <div class="modal-sheet">
+    <div class="m-handle"></div>
+    <img id="newsMImg" style="width:100%;border-radius:var(--r-md);margin-bottom:12px;display:none" alt="">
+    <div style="font-size:0.76rem;color:var(--text-3);margin-bottom:3px" id="newsMDate"></div>
+    <div class="m-title" id="newsMTitle"></div>
+    <p id="newsMBody" style="font-size:0.85rem;color:var(--text-2);line-height:1.85"></p>
+    <div class="m-btns" style="margin-top:18px">
+      <button class="btn-s" style="width:100%" onclick="closeOv('newsModal')">बन्द गर्नुस्</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="noteModal" onclick="if(event.target===this)closeOv('noteModal')">
+  <div class="modal-sheet">
+    <div class="m-handle"></div>
+    <div class="m-title" id="noteMT">नयाँ नोट</div>
+    <form id="noteForm">
+      <div class="f-group"><label class="f-label">शीर्षक *</label><input class="f-input" id="nTitle" type="text" placeholder="नोटको शीर्षक…" required></div>
+      <div class="f-group"><label class="f-label">सामग्री *</label><textarea class="f-textarea" id="nContent" placeholder="यहाँ लेख्नुस्…" required></textarea></div>
+      <div class="f-group"><label class="f-label">विषय (ऐच्छिक)</label><input class="f-input" id="nSubject" type="text" placeholder="जस्तै: नेपाली साहित्य १"></div>
+      <div class="m-btns">
+        <button type="button" class="btn-s" id="closeNoteModal" onclick="closeOv('noteModal')">रद्द</button>
+        <button type="submit" class="btn-p">सुरक्षित</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Profile Edit Modal -->
+<div class="overlay" id="profileEditModal" onclick="if(event.target===this)closeOv('profileEditModal')">
+  <div class="modal-sheet">
+    <div class="m-handle"></div>
+    <div class="m-title">👤 Profile सम्पादन</div>
+
+    <!-- Avatar picker -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:12px;background:var(--surface-b);border-radius:var(--r-md)">
+      <div id="editAvPreview" style="width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;cursor:pointer" onclick="triggerAvatarPick()">
+        <img id="editAvImg" src="" style="width:100%;height:100%;object-fit:cover;display:none;border-radius:50%">
+        <span id="editAvEmoji">👨‍🎓</span>
+      </div>
+      <div>
+        <div style="font-size:0.84rem;font-weight:700;color:var(--text-1);margin-bottom:4px">प्रोफाइल फोटो</div>
+        <button onclick="triggerAvatarPick()" style="font-size:0.76rem;padding:5px 12px;background:var(--accent-glow);color:var(--accent);border:1px solid var(--accent);border-radius:20px;cursor:pointer;font-family:var(--font);font-weight:700">📷 फोटो छान्नुस्</button>
+        <button onclick="removeAvatar()" style="font-size:0.76rem;padding:5px 10px;background:none;color:var(--text-3);border:none;cursor:pointer;font-family:var(--font);margin-left:4px">हटाउनुस्</button>
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">नाम *</label>
+      <input class="f-input" id="editName" type="text" placeholder="तपाईंको नाम">
+    </div>
+    <div class="f-group">
+      <label class="f-label">भूमिका / पद</label>
+      <input class="f-input" id="editRole" type="text" placeholder="जस्तै: शास्त्री विद्यार्थी, प्राध्यापक...">
+    </div>
+
+    <!-- Social Links -->
+    <div style="margin-top:4px;margin-bottom:8px">
+      <div style="font-size:0.8rem;font-weight:700;color:var(--text-2);margin-bottom:10px">🔗 सम्पर्क / Social Links</div>
+      <div class="f-group">
+        <label class="f-label">📧 Email</label>
+        <input class="f-input" id="editEmail" type="email" placeholder="example@email.com">
+      </div>
+      <div class="f-group">
+        <label class="f-label">📘 Facebook</label>
+        <input class="f-input" id="editFacebook" type="url" placeholder="https://facebook.com/yourpage">
+      </div>
+      <div class="f-group">
+        <label class="f-label">📸 Instagram</label>
+        <input class="f-input" id="editInstagram" type="url" placeholder="https://instagram.com/yourhandle">
+      </div>
+      <div class="f-group">
+        <label class="f-label">▶️ YouTube</label>
+        <input class="f-input" id="editYoutube" type="url" placeholder="https://youtube.com/@yourchannel">
+      </div>
+      <div class="f-group">
+        <label class="f-label">🐙 GitHub</label>
+        <input class="f-input" id="editGithub" type="url" placeholder="https://github.com/yourusername">
+      </div>
+      <div class="f-group">
+        <label class="f-label">🌐 Website</label>
+        <input class="f-input" id="editWebsite" type="url" placeholder="https://yourwebsite.com">
+      </div>
+    </div>
+
+    <!-- Copyright name -->
+    <div class="f-group">
+      <label class="f-label">© Copyright नाम</label>
+      <input class="f-input" id="editCopyName" type="text" placeholder="जस्तै: Pratik Adhikari">
+    </div>
+
+    <div class="m-btns">
+      <button class="btn-s" onclick="closeOv('profileEditModal')">रद्द</button>
+      <button class="btn-p" onclick="saveProfileEdit()">सुरक्षित गर्नुस्</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toastEl"></div>
+
+<script src="js/main.js"></script>
+
+<!-- FIX 8: Service Worker registration for PWA install -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(r => console.log('SW registered:', r.scope))
+      .catch(e => console.log('SW error:', e));
+  });
+}
+</script>
+</body>
+</html>
