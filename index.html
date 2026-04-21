@@ -54,7 +54,7 @@
 <header class="site-header">
   <div class="header-left">
     <div class="logo-pill">
-      <div class="logo-ico"><img src="images/icons/logo.svg" width="18" height="18" alt="logo" style="display:inline-block;vertical-align:middle"></div>
+      <div class="logo-ico">📚</div>
       <span class="logo-text">शास्त्री</span>
     </div>
   </div>
@@ -67,14 +67,14 @@
 
         <!-- Theme section -->
         <div class="dm-section">
-          <div class="dm-label"><img src="images/icons/theme.svg" width="13" height="13" alt="theme" style="display:inline-block;vertical-align:middle"> Theme छान्नुस्</div>
+          <div class="dm-label">🎨 Theme छान्नुस्</div>
           <div class="theme-dots" id="themeDots"></div>
         </div>
 
         <!-- Dark mode toggle -->
         <div class="dm-section" style="padding-top:6px;border-top:1px solid var(--divider)">
           <div class="dm-item">
-            <div class="dm-item-ico"><img src="images/icons/moon.svg" width="18" height="18" alt="moon" style="display:inline-block;vertical-align:middle"></div>
+            <div class="dm-item-ico">🌙</div>
             <div>
               <div class="dm-item-name">रात्रि मोड</div>
               <div class="dm-item-sub">Midnight Dark theme</div>
@@ -85,9 +85,9 @@
 
         <!-- Font selector -->
         <div class="dm-section" style="border-top:1px solid var(--divider);padding-top:8px">
-          <div class="dm-label"><img src="images/icons/font.svg" width="13" height="13" alt="font" style="display:inline-block;vertical-align:middle"> Font छान्नुस्</div>
+          <div class="dm-label">🔤 Font छान्नुस्</div>
           <div style="display:flex;flex-direction:column;gap:3px" id="fontList">
-            <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-3);padding:4px 2px 2px"><img src="images/icons/om.svg" width="12" height="12" alt="om" style="display:inline-block;vertical-align:middle"> नेपाली / संस्कृत</div>
+            <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-3);padding:4px 2px 2px">🕉️ नेपाली / संस्कृत</div>
             <div class="font-opt" data-font="noto-serif" onclick="applyFont('noto-serif')">
               <span class="fo-name" style="font-family:'Noto Serif Devanagari',serif">Noto Serif — नमस्ते</span>
             </div>
@@ -112,7 +112,7 @@
             <div class="font-opt" data-font="siddhanta" onclick="applyFont('siddhanta')">
               <span class="fo-name" style="font-family:'Noto Serif Devanagari',serif">Siddhanta — संस्कृत</span>
             </div>
-            <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-3);padding:6px 2px 2px;border-top:1px solid var(--divider);margin-top:3px"><img src="images/icons/font.svg" width="12" height="12" alt="font" style="display:inline-block;vertical-align:middle"> English</div>
+            <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-3);padding:6px 2px 2px;border-top:1px solid var(--divider);margin-top:3px">🔤 English</div>
             <div class="font-opt" data-font="comic-sans" onclick="applyFont('comic-sans')">
               <span class="fo-name" style="font-family:'Comic Sans MS',cursive">Comic Sans</span>
             </div>
@@ -124,12 +124,12 @@
 
         <!-- News Animation -->
         <div class="dm-section" style="border-top:1px solid var(--divider);padding-top:8px">
-          <div class="dm-label"><img src="images/icons/news.svg" width="13" height="13" alt="news" style="display:inline-block;vertical-align:middle"> News Animation</div>
+          <div class="dm-label">📰 News Animation</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px" id="animList">
-            <div class="anim-opt" data-anim="slide"  onclick="setNewsAnim('slide')"><img src="images/icons/slide.svg" width="14" height="14" alt="slide" style="display:inline-block;vertical-align:middle"> Slide</div>
-            <div class="anim-opt" data-anim="fade"   onclick="setNewsAnim('fade')"><img src="images/icons/fade.svg" width="14" height="14" alt="fade" style="display:inline-block;vertical-align:middle"> Fade</div>
-            <div class="anim-opt" data-anim="zoom"   onclick="setNewsAnim('zoom')"><img src="images/icons/zoom-in.svg" width="14" height="14" alt="zoom-in" style="display:inline-block;vertical-align:middle"> Zoom</div>
-            <div class="anim-opt" data-anim="flip"   onclick="setNewsAnim('flip')"><img src="images/icons/flip.svg" width="14" height="14" alt="flip" style="display:inline-block;vertical-align:middle"> Flip</div>
+            <div class="anim-opt" data-anim="slide"  onclick="setNewsAnim('slide')">↔ Slide</div>
+            <div class="anim-opt" data-anim="fade"   onclick="setNewsAnim('fade')">✨ Fade</div>
+            <div class="anim-opt" data-anim="zoom"   onclick="setNewsAnim('zoom')">🔍 Zoom</div>
+            <div class="anim-opt" data-anim="flip"   onclick="setNewsAnim('flip')">🔄 Flip</div>
           </div>
         </div>
 
@@ -145,19 +145,19 @@
         <!-- Other actions -->
         <div class="dm-section" style="padding-top:4px;border-top:1px solid var(--divider)">
           <div class="dm-item" id="shareBtn">
-            <div class="dm-item-ico"><img src="images/icons/share.svg" width="18" height="18" alt="share" style="display:inline-block;vertical-align:middle"></div>
+            <div class="dm-item-ico">🔗</div>
             <div><div class="dm-item-name">Website Share गर्नुस्</div></div>
           </div>
           <div class="dm-item" onclick="go('notes');document.getElementById('dotsMenu').classList.remove('open')">
-            <div class="dm-item-ico"><img src="images/icons/book.svg" width="18" height="18" alt="book" style="display:inline-block;vertical-align:middle"></div>
+            <div class="dm-item-ico">📝</div>
             <div><div class="dm-item-name">मेरा नोटहरू</div></div>
           </div>
           <div class="dm-item" onclick="go('profile');document.getElementById('dotsMenu').classList.remove('open')">
-            <div class="dm-item-ico"><img src="images/icons/settings.svg" width="18" height="18" alt="settings" style="display:inline-block;vertical-align:middle"></div>
+            <div class="dm-item-ico">⚙️</div>
             <div><div class="dm-item-name">सेटिङ र Profile</div></div>
           </div>
           <div class="dm-item" onclick="exportData();document.getElementById('dotsMenu').classList.remove('open')">
-            <div class="dm-item-ico"><img src="images/icons/save.svg" width="18" height="18" alt="save" style="display:inline-block;vertical-align:middle"></div>
+            <div class="dm-item-ico">💾</div>
             <div><div class="dm-item-name">Backup Export</div></div>
           </div>
         </div>
@@ -180,7 +180,7 @@
 
 <!-- ══ TICKER ══ -->
 <div class="ticker-bar">
-  <div class="ticker-badge"><img src="images/icons/news.svg" width="13" height="13" alt="news" class="ticker-svg" style="display:inline-block;vertical-align:middle"> समाचार</div>
+  <div class="ticker-badge">📢 समाचार</div>
   <div class="ticker-inner-wrap">
     <div class="ticker-inner" id="tickerInner">
       <span class="t-item">शास्त्री पोर्टलमा स्वागत छ!</span>
@@ -194,9 +194,9 @@
 <div id="p-home" class="page on">
   <div class="search-wrap">
     <div class="search-glass">
-      <span class="s-ico"><img src="images/icons/search.svg" width="16" height="16" alt="search" style="display:inline-block;vertical-align:middle"></span>
+      <span class="s-ico">🔍</span>
       <input id="sInp" type="search" placeholder="किताब वा विषय खोज्नुस्…" autocomplete="off">
-      <button class="s-clr" id="sClr"><img src="images/icons/close.svg" width="11" height="11" alt="close" style="display:inline-block;vertical-align:middle"></button>
+      <button class="s-clr" id="sClr">✕</button>
       <div class="s-drop" id="sDrop"></div>
     </div>
   </div>
@@ -238,11 +238,11 @@
     <div class="sec-head"><div class="sec-title">सबै विषयहरू</div></div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px">
       <div class="cf-chip nd" data-key="all"     style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('all')">सबै</div>
-      <div class="cf-chip nd" data-key="nepali"   style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('nepali')"><img src="images/icons/scroll.svg" width="14" height="14" alt="scroll" style="display:inline-block;vertical-align:middle"> नेपाली</div>
-      <div class="cf-chip nd" data-key="english"  style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('english')"><img src="images/icons/book.svg" width="14" height="14" alt="book" style="display:inline-block;vertical-align:middle"> English</div>
-      <div class="cf-chip nd" data-key="sanskrit" style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('sanskrit')"><img src="images/icons/om.svg" width="14" height="14" alt="om" style="display:inline-block;vertical-align:middle"> संस्कृत</div>
-      <div class="cf-chip nd" data-key="vyakaran" style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('vyakaran')"><img src="images/icons/grammar.svg" width="14" height="14" alt="grammar" style="display:inline-block;vertical-align:middle"> व्याकरण</div>
-      <div class="cf-chip nd" data-key="jyotish"  style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('jyotish')"><img src="images/icons/astro.svg" width="14" height="14" alt="astro" style="display:inline-block;vertical-align:middle"> ज्योतिष</div>
+      <div class="cf-chip nd" data-key="nepali"   style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('nepali')">📜 नेपाली</div>
+      <div class="cf-chip nd" data-key="english"  style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('english')">📗 English</div>
+      <div class="cf-chip nd" data-key="sanskrit" style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('sanskrit')">🕉️ संस्कृत</div>
+      <div class="cf-chip nd" data-key="vyakaran" style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('vyakaran')">✏️ व्याकरण</div>
+      <div class="cf-chip nd" data-key="jyotish"  style="width:auto;height:auto;border-radius:20px;padding:5px 12px;background:var(--surface);border:1px solid var(--border);font-size:0.76rem;font-weight:700;cursor:pointer;color:var(--text-2)" onclick="renderCourses('jyotish')">⭐ ज्योतिष</div>
     </div>
     <div id="coursesList"><div class="spin-wrap"><div class="spinner"></div></div></div>
   </div>
@@ -266,12 +266,12 @@
       <!-- Avatar: photo वा emoji -->
       <div class="p-av" id="profAvWrap" onclick="triggerAvatarPick()">
         <img id="profAvImg" src="" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:none">
-        <span id="profAvEmoji"><img src="images/icons/user.svg" width="32" height="32" alt="user" style="display:inline-block;vertical-align:middle"></span>
+        <span id="profAvEmoji">👨‍🎓</span>
         <div class="p-av-edit">✏️</div>
       </div>
       <div class="p-name" id="profNameDisp">विद्यार्थी</div>
       <div class="p-role" id="profRoleDisp">शास्त्री कक्षा पोर्टल</div>
-      <button class="prof-edit-btn" onclick="openProfileEdit()"><img src="images/icons/edit.svg" width="14" height="14" alt="edit" style="display:inline-block;vertical-align:middle"> सम्पादन</button>
+      <button class="prof-edit-btn" onclick="openProfileEdit()">✏️ सम्पादन</button>
       <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
     </div>
 
@@ -292,14 +292,14 @@
       <div class="sett-grp-lbl">प्रदर्शन</div>
       <div class="sett-row" onclick="applyTheme(App&&App.theme==='dark'?'light':'dark')">
         <div class="sett-left">
-          <div class="sett-ico" style="background:#1a1a2e"><img src="images/icons/moon.svg" width="18" height="18" alt="moon" style="display:inline-block;vertical-align:middle"></div>
+          <div class="sett-ico" style="background:#1a1a2e;color:#ffd700">🌙</div>
           <div><div class="sett-name">रात्रि मोड</div><div class="sett-desc">Midnight Dark theme</div></div>
         </div>
         <div class="tog" id="profileDarkTog"><div class="tog-k"></div></div>
       </div>
       <div class="sett-row">
         <div class="sett-left">
-          <div class="sett-ico" style="background:#e8f5e9"><img src="images/icons/font.svg" width="18" height="18" alt="font" style="display:inline-block;vertical-align:middle"></div>
+          <div class="sett-ico" style="background:#e8f5e9">🔤</div>
           <div><div class="sett-name">अक्षर आकार</div><div class="sett-desc" id="profFontLbl">16px</div></div>
         </div>
         <input type="range" id="profFontSlider" min="14" max="20" value="16" style="width:90px;accent-color:var(--accent)">
@@ -310,13 +310,13 @@
       <div class="sett-grp-lbl">Data</div>
       <div class="sett-row" onclick="exportData()">
         <div class="sett-left">
-          <div class="sett-ico" style="background:#e3f2fd"><img src="images/icons/upload.svg" width="18" height="18" alt="upload" style="display:inline-block;vertical-align:middle"></div>
+          <div class="sett-ico" style="background:#e3f2fd">📤</div>
           <div><div class="sett-name">Backup Export</div><div class="sett-desc">JSON download</div></div>
         </div><span style="color:var(--text-3)">→</span>
       </div>
       <div class="sett-row" onclick="document.getElementById('impInp').click()">
         <div class="sett-left">
-          <div class="sett-ico" style="background:#f3e5f5"><img src="images/icons/download.svg" width="18" height="18" alt="download" style="display:inline-block;vertical-align:middle"></div>
+          <div class="sett-ico" style="background:#f3e5f5">📥</div>
           <div><div class="sett-name">Backup Import</div><div class="sett-desc">JSON restore</div></div>
         </div><span style="color:var(--text-3)">→</span>
         <input type="file" id="impInp" accept=".json" style="display:none" onchange="importData(event)">
@@ -343,26 +343,10 @@
 
 <!-- ══ BOTTOM NAV ══ -->
 <nav class="bot-nav">
-  <a class="nav-item on" data-page="home" href="#">
-    <div class="nav-pip"></div>
-    <div class="nav-ico"><img src="images/icons/home.svg" width="26" height="26" alt="home" class="nav-svg"></div>
-    <div class="nav-lbl">होम</div>
-  </a>
-  <a class="nav-item" data-page="courses" href="#">
-    <div class="nav-pip"></div>
-    <div class="nav-ico"><img src="images/icons/courses.svg" width="26" height="26" alt="courses" class="nav-svg"></div>
-    <div class="nav-lbl">विषयहरू</div>
-  </a>
-  <a class="nav-item" data-page="notes" href="#">
-    <div class="nav-pip"></div>
-    <div class="nav-ico"><img src="images/icons/notes.svg" width="26" height="26" alt="notes" class="nav-svg"></div>
-    <div class="nav-lbl">नोट</div>
-  </a>
-  <a class="nav-item" data-page="profile" href="#">
-    <div class="nav-pip"></div>
-    <div class="nav-ico"><img src="images/icons/settings.svg" width="26" height="26" alt="settings" class="nav-svg"></div>
-    <div class="nav-lbl">सेटिङ</div>
-  </a>
+  <a class="nav-item on" data-page="home" href="#"><div class="nav-pip"></div><div class="nav-ico">🏠</div><div class="nav-lbl">होम</div></a>
+  <a class="nav-item" data-page="courses" href="#"><div class="nav-pip"></div><div class="nav-ico">🎓</div><div class="nav-lbl">विषयहरू</div></a>
+  <a class="nav-item" data-page="notes" href="#"><div class="nav-pip"></div><div class="nav-ico">📝</div><div class="nav-lbl">नोट</div></a>
+  <a class="nav-item" data-page="profile" href="#"><div class="nav-pip"></div><div class="nav-ico">⚙️</div><div class="nav-lbl">सेटिङ</div></a>
 </nav>
 
 <!-- ══ MODALS ══ -->
@@ -399,17 +383,17 @@
 <div class="overlay" id="profileEditModal" onclick="if(event.target===this)closeOv('profileEditModal')">
   <div class="modal-sheet">
     <div class="m-handle"></div>
-    <div class="m-title"><img src="images/icons/user.svg" width="20" height="20" alt="user" style="display:inline-block;vertical-align:middle"> Profile सम्पादन</div>
+    <div class="m-title">👤 Profile सम्पादन</div>
 
     <!-- Avatar picker -->
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:12px;background:var(--surface-b);border-radius:var(--r-md)">
       <div id="editAvPreview" style="width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden;cursor:pointer" onclick="triggerAvatarPick()">
         <img id="editAvImg" src="" style="width:100%;height:100%;object-fit:cover;display:none;border-radius:50%">
-        <span id="editAvEmoji"><img src="images/icons/user.svg" width="26" height="26" alt="user" style="display:inline-block;vertical-align:middle"></span>
+        <span id="editAvEmoji">👨‍🎓</span>
       </div>
       <div>
         <div style="font-size:0.84rem;font-weight:700;color:var(--text-1);margin-bottom:4px">प्रोफाइल फोटो</div>
-        <button onclick="triggerAvatarPick()" style="font-size:0.76rem;padding:5px 12px;background:var(--accent-glow);color:var(--accent);border:1px solid var(--accent);border-radius:20px;cursor:pointer;font-family:var(--font);font-weight:700"><img src="images/icons/camera.svg" width="14" height="14" alt="camera" style="display:inline-block;vertical-align:middle"> फोटो छान्नुस्</button>
+        <button onclick="triggerAvatarPick()" style="font-size:0.76rem;padding:5px 12px;background:var(--accent-glow);color:var(--accent);border:1px solid var(--accent);border-radius:20px;cursor:pointer;font-family:var(--font);font-weight:700">📷 फोटो छान्नुस्</button>
         <button onclick="removeAvatar()" style="font-size:0.76rem;padding:5px 10px;background:none;color:var(--text-3);border:none;cursor:pointer;font-family:var(--font);margin-left:4px">हटाउनुस्</button>
       </div>
     </div>
@@ -427,27 +411,27 @@
     <div style="margin-top:4px;margin-bottom:8px">
       <div style="font-size:0.8rem;font-weight:700;color:var(--text-2);margin-bottom:10px">🔗 सम्पर्क / Social Links</div>
       <div class="f-group">
-        <label class="f-label"><img src="images/icons/email.svg" width="14" height="14" alt="email" style="display:inline-block;vertical-align:middle"> Email</label>
+        <label class="f-label">📧 Email</label>
         <input class="f-input" id="editEmail" type="email" placeholder="example@email.com">
       </div>
       <div class="f-group">
-        <label class="f-label"><img src="images/icons/facebook.svg" width="14" height="14" alt="facebook" style="display:inline-block;vertical-align:middle"> Facebook</label>
+        <label class="f-label">📘 Facebook</label>
         <input class="f-input" id="editFacebook" type="url" placeholder="https://facebook.com/yourpage">
       </div>
       <div class="f-group">
-        <label class="f-label"><img src="images/icons/instagram.svg" width="14" height="14" alt="instagram" style="display:inline-block;vertical-align:middle"> Instagram</label>
+        <label class="f-label">📸 Instagram</label>
         <input class="f-input" id="editInstagram" type="url" placeholder="https://instagram.com/yourhandle">
       </div>
       <div class="f-group">
-        <label class="f-label"><img src="images/icons/youtube.svg" width="14" height="14" alt="youtube" style="display:inline-block;vertical-align:middle"> YouTube</label>
+        <label class="f-label">▶️ YouTube</label>
         <input class="f-input" id="editYoutube" type="url" placeholder="https://youtube.com/@yourchannel">
       </div>
       <div class="f-group">
-        <label class="f-label"><img src="images/icons/github.svg" width="14" height="14" alt="github" style="display:inline-block;vertical-align:middle"> GitHub</label>
+        <label class="f-label">🐙 GitHub</label>
         <input class="f-input" id="editGithub" type="url" placeholder="https://github.com/yourusername">
       </div>
       <div class="f-group">
-        <label class="f-label"><img src="images/icons/globe.svg" width="14" height="14" alt="globe" style="display:inline-block;vertical-align:middle"> Website</label>
+        <label class="f-label">🌐 Website</label>
         <input class="f-input" id="editWebsite" type="url" placeholder="https://yourwebsite.com">
       </div>
     </div>
